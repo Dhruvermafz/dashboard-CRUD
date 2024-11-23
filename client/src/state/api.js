@@ -3,19 +3,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Backend API
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BASE_URL || "http://localhost:5001",
+    baseUrl: process.env.REACT_APP_BASE_URL || "http://localhost:5001/api/",
   }), // Base URL
   reducerPath: "adminApi",
   // Tags for caching and refetching
-  tagTypes: ["Users", "Roles", "Dashboard", "Tasks"],
+  tagTypes: ["Users", "Roles", "Dashboard", "Tasks", "Login"],
   // Endpoints
   endpoints: (build) => ({
     getUser: build.query({
-      query: () => "management/users", // Adjust the endpoint URL as needed
+      query: () => "users", // Adjust the endpoint URL as needed
       providesTags: ["Users"],
     }),
     getRoles: build.query({
-      query: () => "management/roles", // Adjust the endpoint URL as needed
+      query: () => "roles", // Adjust the endpoint URL as needed
       providesTags: ["Roles"],
     }),
     getDashboard: build.query({
@@ -27,12 +27,21 @@ export const api = createApi({
       providesTags: ["Tasks"],
     }),
     getAdmins: build.query({
-      query: () => "management/admins",
+      query: () => "admins",
       providesTags: ["Admins"],
     }),
     getCustomers: build.query({
-      query: () => "client/customers",
+      query: () => "customers",
       providesTags: ["Customers"],
+    }),
+    login: build.mutation({
+      // Changed to mutation
+      query: (credentials) => ({
+        url: "auth/login", // Endpoint for login
+        method: "POST",
+        body: credentials, // Send credentials in the request body
+      }),
+      invalidatesTags: ["Login"], // Invalidate cache if necessary
     }),
   }),
 });
@@ -45,4 +54,5 @@ export const {
   useGetTasksQuery,
   useGetAdminsQuery,
   useGetCustomersQuery,
+  useLoginMutation, // Changed to mutation
 } = api;

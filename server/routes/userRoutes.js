@@ -55,7 +55,7 @@ const { checkRole } = require("../middleware/checkRole");
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get("/", verifyToken, checkRole(1), userController.getAllUsers);
+router.get("/", userController.getAllUsers);
 
 /**
  * @swagger
@@ -81,7 +81,7 @@ router.get("/", verifyToken, checkRole(1), userController.getAllUsers);
  *       404:
  *         description: User not found
  */
-router.get("/:id", verifyToken, checkRole(1), userController.getUserById);
+router.get("/:id", checkRole(1), userController.getUserById);
 
 /**
  * @swagger
@@ -136,7 +136,7 @@ router.post("/", userController.addUser);
  *       404:
  *         description: User not found
  */
-router.patch("/:id", verifyToken, userController.updateUser);
+router.patch("/:id", userController.updateUser);
 
 /**
  * @swagger
@@ -158,6 +158,6 @@ router.patch("/:id", verifyToken, userController.updateUser);
  *       404:
  *         description: User not found
  */
-router.delete("/:id", verifyToken, userController.deleteUser);
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;

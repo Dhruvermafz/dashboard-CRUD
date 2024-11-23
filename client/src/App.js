@@ -8,7 +8,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { themeSettings } from "theme";
 
 // Scenes
-import { Layout, Dashboard, Customers, Breakdown, Admin } from "scenes";
+import { Layout, Dashboard, Customers, Breakdown, Admin, Login } from "scenes";
+import Roles from "scenes/Roles";
 
 // App
 const App = () => {
@@ -29,9 +30,11 @@ const App = () => {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
 
-              <Route path="/customers" element={<Customers />} />
+              <Route path="/users" element={<Customers />} />
 
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/tasks" element={<Admin />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/roles" element={<Roles />} />
             </Route>
           </Routes>
         </ThemeProvider>

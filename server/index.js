@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config(); // Load environment variables
-
+const cors = require("cors");
 const taskRoutes = require("./routes/taskRoutes");
 const userRoutes = require("./routes/userRoutes");
 const roleRoutes = require("./routes/rolesRoutes");
@@ -10,7 +10,7 @@ const { swaggerUi, swaggerSpec } = require("./swaggerConfig"); // Import Swagger
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+app.use(cors());
 app.use(bodyParser.json());
 
 // Serve Swagger UI

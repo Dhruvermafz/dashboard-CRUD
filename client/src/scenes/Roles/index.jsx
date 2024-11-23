@@ -2,14 +2,15 @@ import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import { useGetAdminsQuery, useGetTasksQuery } from "state/api";
-import { Header, CustomColumnMenu } from "components";
+import { useGetRolesQuery } from "state/api";
+import { Header } from "components";
 
-const Admin = () => {
+// Customers
+const Roles = () => {
   // theme
   const theme = useTheme();
   // get data
-  const { data, isLoading } = useGetTasksQuery();
+  const { data, isLoading } = useGetRolesQuery();
 
   // data columns
   const columns = [
@@ -19,29 +20,13 @@ const Admin = () => {
       flex: 1,
     },
     {
-      field: "title",
-      headerName: "Title",
+      field: "name",
+      headerName: "Name",
       flex: 0.5,
     },
     {
-      field: "description",
-      headerName: "Description",
-      flex: 1,
-    },
-
-    {
-      field: "dueDate",
-      headerName: "Due Date",
-      flex: 0.4,
-    },
-    {
-      field: "createdBy",
-      headerName: "Created By",
-      flex: 1,
-    },
-    {
-      field: "assignedTo",
-      headerName: "Assigned To",
+      field: "status",
+      headerName: "Status",
       flex: 0.5,
     },
   ];
@@ -49,7 +34,7 @@ const Admin = () => {
   return (
     <Box m="1.5rem 2.5rem">
       {/* Header */}
-      <Header title="TASKS" subtitle="Managing all tasks" />
+      <Header title="ROLES" subtitle="List of All Roles" />
 
       {/* Content */}
       <Box
@@ -80,19 +65,16 @@ const Admin = () => {
           },
         }}
       >
-        {/* Grid Table */}
+        {/* Grid table */}
         <DataGrid
           loading={isLoading || !data}
           getRowId={(row) => row.id}
           rows={data || []}
           columns={columns}
-          components={{
-            ColumnMenu: CustomColumnMenu,
-          }}
         />
       </Box>
     </Box>
   );
 };
 
-export default Admin;
+export default Roles;

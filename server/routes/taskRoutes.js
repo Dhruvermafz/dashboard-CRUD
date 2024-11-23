@@ -66,7 +66,7 @@ const { verifyToken } = require("../services/authServices");
  *               items:
  *                 $ref: '#/components/schemas/Task'
  */
-router.get("/", verifyToken, taskController.getAllTasks);
+router.get("/", taskController.getAllTasks);
 
 /**
  * @swagger
@@ -93,7 +93,7 @@ router.get("/", verifyToken, taskController.getAllTasks);
  *       404:
  *         description: Task not found
  */
-router.get("/:id", verifyToken, taskController.getTaskById);
+router.get("/:id", taskController.getTaskById);
 
 /**
  * @swagger
@@ -126,7 +126,7 @@ router.get("/:id", verifyToken, taskController.getTaskById);
  *             schema:
  *               $ref: '#/components/schemas/Task'
  */
-router.post("/", verifyToken, taskController.addTask);
+router.post("/", taskController.addTask);
 
 /**
  * @swagger
@@ -169,7 +169,7 @@ router.post("/", verifyToken, taskController.addTask);
  *       404:
  *         description: Task not found
  */
-router.patch("/:id", verifyToken, taskController.updateTask);
+router.patch("/:id", taskController.updateTask);
 
 /**
  * @swagger
@@ -192,6 +192,6 @@ router.patch("/:id", verifyToken, taskController.updateTask);
  *       404:
  *         description: Task not found
  */
-router.delete("/:id", verifyToken, taskController.deleteTask);
+router.delete("/:id", taskController.deleteTask);
 
 module.exports = router;

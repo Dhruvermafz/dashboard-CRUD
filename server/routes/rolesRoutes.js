@@ -50,7 +50,7 @@ const { verifyToken } = require("../services/authServices");
  *               items:
  *                 $ref: '#/components/schemas/Role'
  */
-router.get("/", verifyToken, roleController.getAllRoles);
+router.get("/", roleController.getAllRoles);
 
 /**
  * @swagger
@@ -77,7 +77,7 @@ router.get("/", verifyToken, roleController.getAllRoles);
  *       404:
  *         description: Role not found
  */
-router.get("/:id", verifyToken, roleController.getRoleById);
+router.get("/:id", roleController.getRoleById);
 
 /**
  * @swagger
@@ -145,7 +145,7 @@ router.post("/", roleController.addRole);
  *       404:
  *         description: Role not found
  */
-router.patch("/:id", verifyToken, roleController.updateRole);
+router.patch("/:id", roleController.updateRole);
 
 /**
  * @swagger
@@ -168,6 +168,6 @@ router.patch("/:id", verifyToken, roleController.updateRole);
  *       404:
  *         description: Role not found
  */
-router.delete("/:id", verifyToken, roleController.deleteRole);
+router.delete("/:id", roleController.deleteRole);
 
 module.exports = router;

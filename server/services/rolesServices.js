@@ -3,7 +3,7 @@
 const fs = require("fs");
 
 // Path to the JSON file where roles will be stored
-const filePath = "./src/data/roles.json";
+const filePath = "./data/roles.json";
 
 // Function to load roles from the JSON file
 function loadRoles() {
