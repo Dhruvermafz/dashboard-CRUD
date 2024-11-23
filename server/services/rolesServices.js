@@ -37,6 +37,7 @@ module.exports = {
   addRole(role) {
     const roles = loadRoles();
     role.id = roles.length > 0 ? roles[roles.length - 1].id + 1 : 1;
+    role.permissions = role.permissions || []; // Ensure permissions are set
     roles.push(role);
     saveRoles(roles);
     return role;

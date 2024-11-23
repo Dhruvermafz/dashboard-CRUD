@@ -34,11 +34,11 @@ module.exports = {
 
   addRole(req, res) {
     try {
-      const { name, status } = req.body;
-      if (!name || typeof status !== "boolean") {
+      const { name, status, permissions } = req.body;
+      if (!name || typeof status !== "boolean" || !Array.isArray(permissions)) {
         return res.status(400).json({ message: "Invalid role data" });
       }
-      //Check if the role name already exists
+
       const existingRole = Role.getAllRoles().find(
         (role) => role.name === name
       );
@@ -46,7 +46,7 @@ module.exports = {
         return res.status(400).json({ message: "Role name already exists" });
       }
 
-      const newRole = { name, status };
+      const newRole = { name, status, permissions };
       const role = Role.addRole(newRole);
       res.status(201).json(role);
     } catch (error) {

@@ -1,12 +1,33 @@
 [
   {
+    "id": 1,
     "name": "admin",
     "status": true,
-    "id": 1
+    "permissions": [
+      "CREATE_USER",
+      "DELETE_USER",
+      "VIEW_TASKS",
+      "MANAGE_ROLES",
+      "UPDATE_USER",
+      "VIEW_REPORTS"
+    ]
   },
   {
+    "id": 2,
     "name": "user",
     "status": true,
-    "id": 2
+    "permissions": ["VIEW_TASKS", "UPDATE_TASKS", "SUBMIT_TASKS"]
+  },
+  {
+    "id": 3,
+    "name": "manager",
+    "status": true,
+    "permissions": [
+      "CREATE_TASKS",
+      "DELETE_TASKS",
+      "VIEW_TASKS",
+      "ASSIGN_TASKS",
+      "VIEW_REPORTS"
+    ]
   }
 ]
