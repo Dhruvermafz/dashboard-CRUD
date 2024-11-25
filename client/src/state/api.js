@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Backend API
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dashboard-crud.onrender.com",
+    baseUrl: "https://dashboard-crud.onrender.com/api",
   }), // Base URL
   reducerPath: "adminApi",
   // Tags for caching and refetching
