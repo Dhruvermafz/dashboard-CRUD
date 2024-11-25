@@ -1,8 +1,8 @@
 import React from "react";
-import { 
+import {
   GridColumnMenuContainer,
-  GridFilterMenuItem,
-  HideGridColMenuItem,
+  GridColumnMenuFilterItem as GridFilterMenuItem,
+  GridColumnMenuHideItem as HideGridColMenuItem,
 } from "@mui/x-data-grid";
 
 // Custom column menu

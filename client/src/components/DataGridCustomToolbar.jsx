@@ -6,11 +6,11 @@ import {
   GridToolbarContainer,
   GridToolbarExport,
   GridToolbarColumnsButton,
+  GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
 
 import FlexBetween from "./FlexBetween";
 
-// Data Grid toolbar
 const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
   return (
     <GridToolbarContainer>
@@ -22,28 +22,37 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
           <GridToolbarExport />
         </FlexBetween>
 
-        {/* Right Side (search) */}
-        <TextField
-          label="Search..."
-          sx={{ mb: "0.5rem", width: "15rem" }}
-          onChange={(e) => setSearchInput(e.target.value)}
-          value={searchInput}
-          variant="standard"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => {
-                    setSearch(searchInput);
-                    setSearchInput("");
-                  }}
-                >
-                  <Search />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+        {/* Right Side (Search Input with QuickFilter) */}
+        <FlexBetween>
+          {/* Built-in Quick Filter (Optional) */}
+          <GridToolbarQuickFilter
+            quickFilterParser={(search) => search.trim().toLowerCase()}
+            debounceMs={300} // Debounce the filter for better performance
+          />
+
+          {/* Custom Search Input */}
+          <TextField
+            label="Search..."
+            sx={{ mb: "0.5rem", ml: "1rem", width: "15rem" }}
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchInput}
+            variant="standard"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => {
+                      setSearch(searchInput);
+                      setSearchInput("");
+                    }}
+                  >
+                    <Search />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FlexBetween>
       </FlexBetween>
     </GridToolbarContainer>
   );
